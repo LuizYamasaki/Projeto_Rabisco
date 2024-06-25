@@ -162,6 +162,33 @@ def delete_produto():
     finally:
         close_db(conexaoDB, cursorDB)  # Fecha a conexão com o banco de dados.
 
+@app.route('/produto/busca', methods=['GET'])
+def buscar_produtos():
+    try:
+        # Obtém o termo de busca da query string.
+        termo_busca = request.args.get('q', '')
+
+        # Verifica se o termo de busca está vazio.
+        if not termo_busca:
+            return jsonify({'erro': 'Termo de busca não fornecido'}), 400
+
+        # Comando SQL para buscar produtos pelo nome ou descrição.
+        conexaoDB, cursorDB = conecta_bd()
+        comandoSQL = "SELECT * FROM Produto WHERE nome LIKE %s OR descricao LIKE %s"
+        like_termo = f"%{termo_busca}%"  # Adiciona os curingas para o LIKE.
+        cursorDB.execute(comandoSQL, (like_termo, like_termo))
+        produtos = cursorDB.fetchall()  # Obtém todos os produtos correspondentes.
+
+        if not produtos:
+            return jsonify({'mensagem': 'Nenhum produto encontrado'}), 200
+
+        return jsonify(produtos), 200
+    except Error as erro:
+        return jsonify({'erro': f'{erro}'}), 500
+    finally:
+        close_db(conexaoDB, cursorDB)
+
+
 
 # ERRO 404
 @app.errorhandler(404)
