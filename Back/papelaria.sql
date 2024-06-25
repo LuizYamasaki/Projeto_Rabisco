@@ -1,0 +1,19 @@
+CREATE DATABASE Papelaria;
+
+USE Papelaria;
+
+CREATE TABLE Produto(
+idProduto INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(50) NOT NULL,
+descricao TEXT NOT NULL,
+preco DECIMAL(10,2) NOT NULL,
+quantidade INT NOT NULL
+);
+
+SELECT * FROM produto;
+
+TRUNCATE TABLE produto;
+
+ALTER TABLE Produto 
+ADD COLUMN img VARCHAR(225) NOT NULL
+

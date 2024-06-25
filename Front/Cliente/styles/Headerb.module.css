@@ -1,0 +1,12 @@
+.img {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+
+.desc {
+    min-height: 30px;
+  }
+
