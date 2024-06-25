@@ -1,7 +1,7 @@
 # Importa as bibliotecas Flask, jsonify e request para criar a aplicação web e manipular requisições e respostas JSON.
 from flask import Flask, jsonify, request
 
-# Importa a biblioteca Flask-CORS para permitir requisições de diferentes origens (cross-origin).
+# Importa a biblioteca Flask-CORS para permitir requisições de diferentes origens (cross-origin)
 from flask_cors import CORS
 
 # Importa a biblioteca mysql.connector para conectar e interagir com o banco de dados MySQL.
